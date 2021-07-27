@@ -1,5 +1,6 @@
 package com.example.projectvelocity.controller;
 
+import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.EncargadoBodega;
 import com.example.projectvelocity.service.EncargadoBodegaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,29 @@ public class EncargadoBodegaController {
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los EncargadoBodegas",
+                    "No se pudo listar los encargado de bodegas",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEncargadoBodega(@PathVariable Long id){
+
+        ResponseEntity<String> resp= null;
+        try {
+            encargadoBodegaService.deleteEncargadoBodega(id);
+            resp= new ResponseEntity<String> (
+                    "EncargadoBodega '"+id+"' eliminado",HttpStatus.OK);
+
+        } catch (VelocityException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp= new ResponseEntity<String>(
+                    "No se pudo eliminar el encargadoBodega", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return resp;
     }
 
 

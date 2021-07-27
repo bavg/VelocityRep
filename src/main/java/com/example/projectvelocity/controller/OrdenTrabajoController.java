@@ -1,6 +1,7 @@
 package com.example.projectvelocity.controller;
 
 
+import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.OrdenTrabajo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class OrdenTrabajoController {
         } catch (Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo guardar el OrdenTrabajo",
+                    "No se pudo guardar la OrdenTrabajo",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
@@ -42,10 +43,29 @@ public class OrdenTrabajoController {
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los OrdenTrabajos",
+                    "No se pudo listar las Ordenes de trabajo",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteOrdenTrabajo(@PathVariable Long id){
+
+        ResponseEntity<String> resp= null;
+        try {
+            ordenTrabajoService.deleteOrdenTrabajo(id);
+            resp= new ResponseEntity<String> (
+                    "Orden de trabajo '"+id+"' eliminada",HttpStatus.OK);
+
+        } catch (VelocityException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp= new ResponseEntity<String>(
+                    "No se pudo eliminar la orden de trabajo", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return resp;
     }
 
 

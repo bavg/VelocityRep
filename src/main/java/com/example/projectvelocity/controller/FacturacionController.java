@@ -1,6 +1,7 @@
 package com.example.projectvelocity.controller;
 
 
+import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.Facturacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,10 +43,29 @@ public class FacturacionController {
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los Facturacions",
+                    "No se pudo listar las facturaciones",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteFacturacion(@PathVariable Long id){
+
+        ResponseEntity<String> resp= null;
+        try {
+            facturacionService.deleteFacturacion(id);
+            resp= new ResponseEntity<String> (
+                    "Facturacion '"+id+"' eliminada",HttpStatus.OK);
+
+        } catch (VelocityException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp= new ResponseEntity<String>(
+                    "No se pudo eliminar la facturacion", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return resp;
     }
 
 

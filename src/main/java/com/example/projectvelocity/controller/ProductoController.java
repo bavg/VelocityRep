@@ -1,6 +1,7 @@
 package com.example.projectvelocity.controller;
 
 
+import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +47,25 @@ public class ProductoController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProducto(@PathVariable Long id){
+
+        ResponseEntity<String> resp= null;
+        try {
+            productoService.deleteProducto(id);
+            resp= new ResponseEntity<String> (
+                    "Producto '"+id+"' eliminado",HttpStatus.OK);
+
+        } catch (VelocityException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp= new ResponseEntity<String>(
+                    "No se pudo eliminar el producto", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return resp;
     }
 
 

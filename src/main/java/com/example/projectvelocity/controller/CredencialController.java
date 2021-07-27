@@ -1,6 +1,7 @@
 package com.example.projectvelocity.controller;
 
 
+import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.Credencial;
 import com.example.projectvelocity.service.CredencialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,25 @@ public class CredencialController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCredencial(@PathVariable Long id){
+
+        ResponseEntity<String> resp= null;
+        try {
+            credencialService.deleteCredencial(id);
+            resp= new ResponseEntity<String> (
+                    "Credencial '"+id+"' eliminada",HttpStatus.OK);
+
+        } catch (VelocityException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp= new ResponseEntity<String>(
+                    "No se pudo eliminar la credencial", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return resp;
     }
 
 

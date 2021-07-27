@@ -1,6 +1,7 @@
 package com.example.projectvelocity.controller;
 
 
+import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.Cliente;
 import com.example.projectvelocity.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,24 @@ public class ClienteController {
 
         }
         return response;
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCliente(@PathVariable Long id){
+
+        ResponseEntity<String> resp= null;
+        try {
+            clienteService.deleteCliente(id);
+            resp= new ResponseEntity<String> (
+                    "Cliente '"+id+"' eliminado",HttpStatus.OK);
+
+        } catch (VelocityException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            resp= new ResponseEntity<String>(
+                    "No se pudo eliminar el cliente", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return resp;
     }
 }
