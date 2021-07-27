@@ -37,7 +37,7 @@ public class UsuarioController {
     public ResponseEntity<?> getAllUsuarios(){
         ResponseEntity<?> response = null;
         try{
-            List<Usuario> list = usuarioService.getAllUsuarios();
+            List<Usuario> list = usuarioService.getAllUsuario();
             response = new ResponseEntity<List<Usuario>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

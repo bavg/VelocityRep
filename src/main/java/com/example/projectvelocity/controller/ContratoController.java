@@ -37,7 +37,7 @@ public class ContratoController {
     public ResponseEntity<?> getAllContratos(){
         ResponseEntity<?> response = null;
         try{
-            List<Contrato> list = contratoService.getAllContratos();
+            List<Contrato> list = contratoService.getAllContrato();
             response = new ResponseEntity<List<Contrato>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

@@ -14,7 +14,7 @@ public interface PlanService {
 
     Plan getOnePlan(Long id);
 
-    List<Plan> getAllPlans();
+    List<Plan> getAllPlan();
 
     boolean isPlanExist(Long id);
 }

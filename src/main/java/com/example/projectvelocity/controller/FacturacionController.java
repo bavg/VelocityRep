@@ -1,48 +1,48 @@
 package com.example.projectvelocity.controller;
 
 
-import com.example.projectvelocity.model.Plan;
+import com.example.projectvelocity.model.Facturacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.projectvelocity.service.PlanService;
+import com.example.projectvelocity.service.FacturacionService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Plan")
-public class PlanController {
+@RequestMapping("/Facturacion")
+public class FacturacionController {
 
     @Autowired
-    private PlanService planService;
+    private FacturacionService facturacionService;
 
     @PostMapping("/crear")
-    public ResponseEntity<String> savePlan(@RequestBody Plan Plan){
+    public ResponseEntity<String> saveFacturacion(@RequestBody Facturacion Facturacion){
         ResponseEntity<String> response = null;
         try {
-            Long id = planService.savePlan(Plan);
+            Long id = facturacionService.saveFacturacion(Facturacion);
             response = new ResponseEntity<String>(
-                    "Plan '" + id + "' creado", HttpStatus.CREATED);
+                    "Facturacion '" + id + "' creado", HttpStatus.CREATED);
         } catch (Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo guardar el Plan",
+                    "No se pudo guardar el Facturacion",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> getAllPlans(){
+    public ResponseEntity<?> getAllFacturacions(){
         ResponseEntity<?> response = null;
         try{
-            List<Plan> list = planService.getAllPlan();
-            response = new ResponseEntity<List<Plan>>(list, HttpStatus.OK);
+            List<Facturacion> list = facturacionService.getAllFacturacion();
+            response = new ResponseEntity<List<Facturacion>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los Plans",
+                    "No se pudo listar los Facturacions",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;

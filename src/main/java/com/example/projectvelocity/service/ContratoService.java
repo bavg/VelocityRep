@@ -14,7 +14,7 @@ public interface ContratoService {
 
     Contrato getOneContrato(Long id);
 
-    List<Contrato> getAllContratos();
+    List<Contrato> getAllContrato();
 
     boolean isContratoExist(Long id);
 }

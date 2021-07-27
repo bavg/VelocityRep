@@ -37,7 +37,7 @@ public class ClienteController {
     public ResponseEntity<?> getAllClientes(){
         ResponseEntity<?> response = null;
         try{
-            List<Cliente> list = clienteService.getAllClientes();
+            List<Cliente> list = clienteService.getAllCliente();
             response = new ResponseEntity<List<Cliente>>(list, HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();

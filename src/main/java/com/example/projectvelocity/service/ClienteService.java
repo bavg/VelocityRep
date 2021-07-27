@@ -14,7 +14,7 @@ public interface ClienteService {
 
     Cliente getOneCliente(Long id);
 
-    List<Cliente> getAllClientes();
+    List<Cliente> getAllCliente();
 
     boolean isClienteExist(Long id);
 }

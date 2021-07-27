@@ -1,48 +1,48 @@
 package com.example.projectvelocity.controller;
 
 
-import com.example.projectvelocity.model.Plan;
+import com.example.projectvelocity.model.Supervisor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.projectvelocity.service.PlanService;
+import com.example.projectvelocity.service.SupervisorService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Plan")
-public class PlanController {
+@RequestMapping("/Supervisor")
+public class SupervisorController {
 
     @Autowired
-    private PlanService planService;
+    private SupervisorService supervisorService;
 
     @PostMapping("/crear")
-    public ResponseEntity<String> savePlan(@RequestBody Plan Plan){
+    public ResponseEntity<String> saveSupervisor(@RequestBody Supervisor Supervisor){
         ResponseEntity<String> response = null;
         try {
-            Long id = planService.savePlan(Plan);
+            Long id = supervisorService.saveSupervisor(Supervisor);
             response = new ResponseEntity<String>(
-                    "Plan '" + id + "' creado", HttpStatus.CREATED);
+                    "Supervisor '" + id + "' creado", HttpStatus.CREATED);
         } catch (Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo guardar el Plan",
+                    "No se pudo guardar el Supervisor",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> getAllPlans(){
+    public ResponseEntity<?> getAllSupervisors(){
         ResponseEntity<?> response = null;
         try{
-            List<Plan> list = planService.getAllPlan();
-            response = new ResponseEntity<List<Plan>>(list, HttpStatus.OK);
+            List<Supervisor> list = supervisorService.getAllSupervisor();
+            response = new ResponseEntity<List<Supervisor>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los Plans",
+                    "No se pudo listar los Supervisors",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;

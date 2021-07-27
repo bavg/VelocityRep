@@ -1,48 +1,48 @@
 package com.example.projectvelocity.controller;
 
 
-import com.example.projectvelocity.model.Plan;
+import com.example.projectvelocity.model.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.projectvelocity.service.PlanService;
+import com.example.projectvelocity.service.ProductoService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Plan")
-public class PlanController {
+@RequestMapping("/Producto")
+public class ProductoController {
 
     @Autowired
-    private PlanService planService;
+    private ProductoService productoService;
 
     @PostMapping("/crear")
-    public ResponseEntity<String> savePlan(@RequestBody Plan Plan){
+    public ResponseEntity<String> saveProducto(@RequestBody Producto Producto){
         ResponseEntity<String> response = null;
         try {
-            Long id = planService.savePlan(Plan);
+            Long id = productoService.saveProducto(Producto);
             response = new ResponseEntity<String>(
-                    "Plan '" + id + "' creado", HttpStatus.CREATED);
+                    "Producto '" + id + "' creado", HttpStatus.CREATED);
         } catch (Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo guardar el Plan",
+                    "No se pudo guardar el Producto",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> getAllPlans(){
+    public ResponseEntity<?> getAllProductos(){
         ResponseEntity<?> response = null;
         try{
-            List<Plan> list = planService.getAllPlan();
-            response = new ResponseEntity<List<Plan>>(list, HttpStatus.OK);
+            List<Producto> list = productoService.getAllProducto();
+            response = new ResponseEntity<List<Producto>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los Plans",
+                    "No se pudo listar los Productos",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;

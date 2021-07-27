@@ -45,7 +45,7 @@ public class ContratoServiceImplementation implements ContratoService {
     }
 
     @Override
-    public List<Contrato> getAllContratos() {
+    public List<Contrato> getAllContrato() {
         List<Contrato> list = contratoRepository.findAll();
         return list;
     }

@@ -1,48 +1,48 @@
 package com.example.projectvelocity.controller;
 
 
-import com.example.projectvelocity.model.Plan;
+import com.example.projectvelocity.model.Credencial;
+import com.example.projectvelocity.service.CredencialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.projectvelocity.service.PlanService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Plan")
-public class PlanController {
+@RequestMapping("/Credencial")
+public class CredencialController {
 
     @Autowired
-    private PlanService planService;
+    private CredencialService credencialService;
 
     @PostMapping("/crear")
-    public ResponseEntity<String> savePlan(@RequestBody Plan Plan){
+    public ResponseEntity<String> saveCredencial(@RequestBody Credencial credencial){
         ResponseEntity<String> response = null;
         try {
-            Long id = planService.savePlan(Plan);
+            Long id = credencialService.saveCredencial(credencial);
             response = new ResponseEntity<String>(
-                    "Plan '" + id + "' creado", HttpStatus.CREATED);
+                    "Credencial '" + id + "' creado", HttpStatus.CREATED);
         } catch (Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo guardar el Plan",
+                    "No se pudo guardar la credencial",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> getAllPlans(){
+    public ResponseEntity<?> getAllCredenciales(){
         ResponseEntity<?> response = null;
         try{
-            List<Plan> list = planService.getAllPlan();
-            response = new ResponseEntity<List<Plan>>(list, HttpStatus.OK);
+            List<Credencial> list = credencialService.getAllCredencial();
+            response = new ResponseEntity<List<Credencial>>(list, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             response = new ResponseEntity<String>(
-                    "No se pudo listar los Plans",
+                    "No se pudo listar las credenciales",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;
