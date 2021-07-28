@@ -48,6 +48,22 @@ public class FacturacionController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneFacturacion(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Facturacion facturacion = facturacionService.getOneFacturacion(id);
+            response = new ResponseEntity<Facturacion>(facturacion, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar la facturacion",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteFacturacion(@PathVariable Long id){
 

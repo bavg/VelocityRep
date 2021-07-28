@@ -49,6 +49,22 @@ public class FuncionarioController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneFuncionario(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Funcionario funcionario = funcionarioService.getOneFuncionario(id);
+            response = new ResponseEntity<Funcionario>(funcionario, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el funcionario",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteFuncionario(@PathVariable Long id){
 

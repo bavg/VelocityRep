@@ -49,6 +49,22 @@ public class ClienteController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneCliente(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Cliente cliente = clienteService.getOneCliente(id);
+            response = new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el cliente",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCliente(@PathVariable Long id){
 

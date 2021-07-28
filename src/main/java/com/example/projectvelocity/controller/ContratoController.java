@@ -48,6 +48,22 @@ public class ContratoController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneContrato(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Contrato contrato = contratoService.getOneContrato(id);
+            response = new ResponseEntity<Contrato>(contrato, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el contrato",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteContrato(@PathVariable Long id){
 

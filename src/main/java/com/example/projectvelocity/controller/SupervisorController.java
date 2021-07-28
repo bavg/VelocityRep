@@ -48,6 +48,22 @@ public class SupervisorController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneSupervisor(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Supervisor supervisor = supervisorService.getOneSupervisor(id);
+            response = new ResponseEntity<Supervisor>(supervisor, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el supervisor",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteSupervisor(@PathVariable Long id){
 

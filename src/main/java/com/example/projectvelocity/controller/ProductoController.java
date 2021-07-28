@@ -48,6 +48,22 @@ public class ProductoController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneProducto(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Producto producto = productoService.getOneProducto(id);
+            response = new ResponseEntity<Producto>(producto, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el producto",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProducto(@PathVariable Long id){
 

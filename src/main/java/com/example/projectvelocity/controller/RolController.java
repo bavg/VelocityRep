@@ -48,6 +48,22 @@ public class RolController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneRol(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Rol rol = rolService.getOneRol(id);
+            response = new ResponseEntity<Rol>(rol, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el rol",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteRol(@PathVariable Long id){
 

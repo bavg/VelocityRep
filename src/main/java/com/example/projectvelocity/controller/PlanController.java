@@ -48,6 +48,22 @@ public class PlanController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOnePlan(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Plan plan = planService.getOnePlan(id);
+            response = new ResponseEntity<Plan>(plan, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el plan",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePlan(@PathVariable Long id){
 

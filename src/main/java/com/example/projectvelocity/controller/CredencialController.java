@@ -48,6 +48,22 @@ public class CredencialController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneCredencial(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Credencial credencial = credencialService.getOneCredencial(id);
+            response = new ResponseEntity<Credencial>(credencial, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar la credencial",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCredencial(@PathVariable Long id){
 

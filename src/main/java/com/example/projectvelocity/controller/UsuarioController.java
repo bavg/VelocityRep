@@ -48,6 +48,22 @@ public class UsuarioController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneUsuario(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            Usuario usuario = usuarioService.getOneUsuario(id);
+            response = new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el usuario",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUsuario(@PathVariable Long id){
 

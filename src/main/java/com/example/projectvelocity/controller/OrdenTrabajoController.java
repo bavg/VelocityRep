@@ -48,6 +48,22 @@ public class OrdenTrabajoController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneOrdenTrabajo(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            OrdenTrabajo ordenTrabajo = ordenTrabajoService.getOneOrdenTrabajo(id);
+            response = new ResponseEntity<OrdenTrabajo>(ordenTrabajo, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar la orden de trabajo",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrdenTrabajo(@PathVariable Long id){
 

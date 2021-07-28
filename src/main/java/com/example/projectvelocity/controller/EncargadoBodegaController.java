@@ -47,6 +47,22 @@ public class EncargadoBodegaController {
         }
         return response;
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getOneEncargadoBodega(@PathVariable Long id){
+        ResponseEntity<?> response = null;
+        try{
+            EncargadoBodega encargadoBodega = encargadoBodegaService.getOneEncargadoBodega(id);
+            response = new ResponseEntity<EncargadoBodega>(encargadoBodega, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el encargadoBodega",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEncargadoBodega(@PathVariable Long id){
 
