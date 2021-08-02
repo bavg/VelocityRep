@@ -18,7 +18,7 @@ public class FacturacionController {
     @Autowired
     private FacturacionService facturacionService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveFacturacion(@RequestBody Facturacion Facturacion){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class FacturacionController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllFacturacions(){
         ResponseEntity<?> response = null;
         try{
@@ -59,6 +59,21 @@ public class FacturacionController {
             e.printStackTrace();
             response = new ResponseEntity<String>(
                     "No se pudo listar la facturacion",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateFacturacion(@PathVariable Long id, @RequestBody Facturacion facturacionNew){
+        ResponseEntity<?> response = null;
+        try{
+            facturacionService.updateFacturacion(facturacionNew, id);
+            response = new ResponseEntity<Facturacion>(facturacionNew, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el facturacion",
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return response;

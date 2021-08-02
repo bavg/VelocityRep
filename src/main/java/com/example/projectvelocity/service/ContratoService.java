@@ -8,7 +8,7 @@ public interface ContratoService {
 
     Long saveContrato(Contrato contrato);
 
-    void updateContrato(Contrato contrato);
+    void updateContrato(Contrato contrato, Long id);
 
     void deleteContrato(Long id);
 

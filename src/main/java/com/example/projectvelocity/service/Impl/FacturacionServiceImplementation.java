@@ -23,8 +23,14 @@ public class FacturacionServiceImplementation implements FacturacionService {
     }
 
     @Override
-    public void updateFacturacion(Facturacion Facturacion) {
-        facturacionRepository.save(Facturacion);
+    public void updateFacturacion(Facturacion facturacion, Long id) {
+        Facturacion old = getOneFacturacion(id);
+        old.setNumeroFactura(facturacion.getNumeroFactura());
+        old.setMonto(facturacion.getMonto());
+        old.setFecha(facturacion.getFecha());
+        old.setCliente(facturacion.getCliente());
+        old.setContrato(facturacion.getContrato());
+        facturacionRepository.save(facturacion);
     }
 
     @Override
@@ -35,14 +41,14 @@ public class FacturacionServiceImplementation implements FacturacionService {
 
     @Override
     public Facturacion getOneFacturacion(Long id) {
-        Facturacion Facturacion = facturacionRepository.findById(id)
+        Facturacion facturacion = facturacionRepository.findById(id)
                 .orElseThrow(()->new VelocityException(
                         new StringBuffer().append("Facturacion  '")
                                 .append(id)
                                 .append("' no existe")
                                 .toString())
                 );
-        return Facturacion;
+        return facturacion;
     }
 
     @Override

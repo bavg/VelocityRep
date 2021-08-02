@@ -18,7 +18,7 @@ public class PlanController {
     @Autowired
     private PlanService planService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> savePlan(@RequestBody Plan Plan){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class PlanController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllPlans(){
         ResponseEntity<?> response = null;
         try{
@@ -55,6 +55,21 @@ public class PlanController {
         try{
             Plan plan = planService.getOnePlan(id);
             response = new ResponseEntity<Plan>(plan, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el plan",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePlan(@PathVariable Long id, @RequestBody Plan planNew){
+        ResponseEntity<?> response = null;
+        try{
+            planService.updatePlan(planNew, id);
+            response = new ResponseEntity<Plan>(planNew, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(

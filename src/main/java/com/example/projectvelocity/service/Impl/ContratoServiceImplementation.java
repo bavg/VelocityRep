@@ -22,7 +22,15 @@ public class ContratoServiceImplementation implements ContratoService {
     }
 
     @Override
-    public void updateContrato(Contrato contrato) {
+    public void updateContrato(Contrato contrato, Long id) {
+        Contrato old = getOneContrato(id);
+        old.setDireccion(contrato.getDireccion());
+        old.setFechaVencimiento(contrato.getFechaVencimiento());
+        old.setEstadoPago(contrato.getEstadoPago());
+        old.setUltimaFechaPagado(contrato.getUltimaFechaPagado());
+        old.setPlanes(contrato.getPlanes());
+        old.setFuncionario(contrato.getFuncionario());
+        old.setFacturacion(contrato.getFacturacion());
         contratoRepository.save(contrato);
     }
 

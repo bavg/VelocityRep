@@ -8,7 +8,7 @@ public interface FuncionarioService {
 
     Long saveFuncionario(Funcionario funcionario);
 
-    void updateFuncionario(Funcionario funcionario);
+    void updateFuncionario(Funcionario funcionario, Long id);
 
     void deleteFuncionario(Long id);
 

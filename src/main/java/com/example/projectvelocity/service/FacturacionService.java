@@ -8,7 +8,7 @@ public interface FacturacionService {
 
     Long saveFacturacion(Facturacion facturacion);
 
-    void updateFacturacion(Facturacion facturacion);
+    void updateFacturacion(Facturacion facturacion, Long id);
 
     void deleteFacturacion(Long id);
 

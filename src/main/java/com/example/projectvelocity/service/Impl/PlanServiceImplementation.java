@@ -23,8 +23,15 @@ public class PlanServiceImplementation implements PlanService {
     }
 
     @Override
-    public void updatePlan(Plan Plan) {
-        planRepository.save(Plan);
+    public void updatePlan(Plan plan, Long id) {
+        Plan old = getOnePlan(id);
+        old.setTipoServicio(plan.getTipoServicio());
+        old.setPrecio(plan.getPrecio());
+        old.setDescripcion(plan.getDescripcion());
+        old.setZona(plan.getZona());
+        old.setSupervisor(plan.getSupervisor());
+        old.setContratos(plan.getContratos());
+        planRepository.save(plan);
     }
 
     @Override

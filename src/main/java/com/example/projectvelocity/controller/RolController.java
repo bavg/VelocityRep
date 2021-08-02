@@ -18,7 +18,7 @@ public class RolController {
     @Autowired
     private RolService rolService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveRol(@RequestBody Rol Rol){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class RolController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllRols(){
         ResponseEntity<?> response = null;
         try{
@@ -55,6 +55,21 @@ public class RolController {
         try{
             Rol rol = rolService.getOneRol(id);
             response = new ResponseEntity<Rol>(rol, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el rol",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateRol(@PathVariable Long id, @RequestBody Rol rolNew){
+        ResponseEntity<?> response = null;
+        try{
+            rolService.updateRol(rolNew, id);
+            response = new ResponseEntity<Rol>(rolNew, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(

@@ -8,7 +8,7 @@ public interface SupervisorService {
 
     Long saveSupervisor(Supervisor supervisor);
 
-    void updateSupervisor(Supervisor supervisor);
+    void updateSupervisor(Supervisor supervisor, Long id);
 
     void deleteSupervisor(Long id);
 

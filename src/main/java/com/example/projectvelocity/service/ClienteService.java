@@ -8,7 +8,7 @@ public interface ClienteService {
 
     Long saveCliente(Cliente cliente);
 
-    void updateCliente(Cliente cliente);
+    void updateCliente(Cliente cliente, Long id);
 
     void deleteCliente(Long id);
 

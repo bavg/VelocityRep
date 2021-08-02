@@ -18,7 +18,7 @@ public class CredencialController {
     @Autowired
     private CredencialService credencialService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveCredencial(@RequestBody Credencial credencial){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class CredencialController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllCredenciales(){
         ResponseEntity<?> response = null;
         try{

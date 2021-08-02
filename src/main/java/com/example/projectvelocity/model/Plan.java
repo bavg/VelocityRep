@@ -1,18 +1,23 @@
 package com.example.projectvelocity.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "planes")
 public class Plan {
 
     @Id
@@ -23,6 +28,14 @@ public class Plan {
     private Integer precio;
     private String descripcion;
     private String zona;
-    private Long idSupervisor;
+
+    @JsonBackReference(value = "Supervisor-Plan")
+    @ManyToOne
+    @JoinColumn(name = "Supervisor")
+    private Supervisor supervisor;
+
+
+    @ManyToMany(mappedBy = "planes")
+    private List<Contrato> contratos;
 
 }

@@ -18,7 +18,7 @@ public class ContratoController {
     @Autowired
     private ContratoService contratoService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveContrato(@RequestBody Contrato contrato){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class ContratoController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllContratos(){
         ResponseEntity<?> response = null;
         try{
@@ -55,6 +55,21 @@ public class ContratoController {
         try{
             Contrato contrato = contratoService.getOneContrato(id);
             response = new ResponseEntity<Contrato>(contrato, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el contrato",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateContrato(@PathVariable Long id, @RequestBody Contrato contratoNew){
+        ResponseEntity<?> response = null;
+        try{
+            contratoService.updateContrato(contratoNew, id);
+            response = new ResponseEntity<Contrato>(contratoNew, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(

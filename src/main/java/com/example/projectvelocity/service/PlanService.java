@@ -8,7 +8,7 @@ public interface PlanService {
 
     Long savePlan(Plan plan);
 
-    void updatePlan(Plan plan);
+    void updatePlan(Plan plan, Long id);
 
     void deletePlan(Long id);
 
