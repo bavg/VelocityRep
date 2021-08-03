@@ -18,7 +18,7 @@ public class SupervisorController {
     @Autowired
     private SupervisorService supervisorService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveSupervisor(@RequestBody Supervisor Supervisor){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class SupervisorController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllSupervisors(){
         ResponseEntity<?> response = null;
         try{

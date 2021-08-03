@@ -17,7 +17,7 @@ public class EncargadoBodegaController {
     @Autowired
     private EncargadoBodegaService encargadoBodegaService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveEncargadoBodega(@RequestBody EncargadoBodega EncargadoBodega){
         ResponseEntity<String> response = null;
         try {
@@ -33,7 +33,7 @@ public class EncargadoBodegaController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllEncargadoBodegas(){
         ResponseEntity<?> response = null;
         try{

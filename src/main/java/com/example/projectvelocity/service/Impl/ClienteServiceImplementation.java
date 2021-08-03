@@ -22,7 +22,19 @@ public class ClienteServiceImplementation implements ClienteService {
     }
 
     @Override
-    public void updateCliente(Cliente cliente){
+    public void updateCliente(Cliente cliente, Long id){
+        Cliente old = getOneCliente(id);
+        old.setApellido(cliente.getApellido());
+        old.setFacturaciones(cliente.getFacturaciones());
+        old.setContrasena(cliente.getContrasena());
+        old.setCorreo(cliente.getCorreo());
+        old.setDireccion(cliente.getDireccion());
+        old.setNombre(cliente.getNombre());
+        old.setRol(cliente.getRol());
+        old.setRut(cliente.getRut());
+        old.setUsuario(cliente.getUsuario());
+        old.setFechaNacimiento(cliente.getFechaNacimiento());
+        old.setTelefono(cliente.getTelefono());
         clienteRepository.save(cliente);
     }
 

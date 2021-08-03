@@ -23,7 +23,10 @@ public class RolServiceImplementation implements RolService {
     }
 
     @Override
-    public void updateRol(Rol Rol) {
+    public void updateRol(Rol Rol, Long id) {
+        Rol old = getOneRol(id);
+        old.setDescripcionRol(Rol.getDescripcionRol());
+        old.setUsuarios(Rol.getUsuarios());
         rolRepository.save(Rol);
     }
 

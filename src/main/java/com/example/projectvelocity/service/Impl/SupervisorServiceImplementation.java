@@ -23,8 +23,20 @@ public class SupervisorServiceImplementation implements SupervisorService {
     }
 
     @Override
-    public void updateSupervisor(Supervisor Supervisor) {
-        supervisorRepository.save(Supervisor);
+    public void updateSupervisor(Supervisor supervisor, Long id) {
+        Supervisor old = getOneSupervisor(id);
+        old.setNombre(supervisor.getNombre());
+        old.setApellido(supervisor.getApellido());
+        old.setCorreo(supervisor.getCorreo());
+        old.setDireccion(supervisor.getDireccion());
+        old.setFechaNacimiento(supervisor.getFechaNacimiento());
+        old.setRut(supervisor.getRut());
+        old.setTelefono(supervisor.getTelefono());
+        old.setUsuario(supervisor.getUsuario());
+        old.setContrasena(supervisor.getContrasena());
+        old.setRol(supervisor.getRol());
+        old.setPlanes(supervisor.getPlanes());
+        supervisorRepository.save(supervisor);
     }
 
     @Override

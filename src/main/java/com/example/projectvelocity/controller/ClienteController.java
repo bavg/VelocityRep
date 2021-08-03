@@ -18,7 +18,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveCliente (@RequestBody Cliente cliente){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +34,7 @@ public class ClienteController {
             return response;
         }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllClientes(){
         ResponseEntity<?> response = null;
         try{
@@ -56,6 +56,21 @@ public class ClienteController {
         try{
             Cliente cliente = clienteService.getOneCliente(id);
             response = new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el cliente",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCliente(@PathVariable Long id, @RequestBody Cliente clienteNew){
+        ResponseEntity<?> response = null;
+        try{
+            clienteService.updateCliente(clienteNew, id);
+            response = new ResponseEntity<Cliente>(clienteNew, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(

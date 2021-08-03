@@ -19,7 +19,7 @@ public class FuncionarioController {
     @Autowired
     private FuncionarioService funcionarioService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveFuncionario(@RequestBody Funcionario Funcionario){
         ResponseEntity<String> response = null;
         try {
@@ -35,7 +35,7 @@ public class FuncionarioController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllFuncionarios(){
         ResponseEntity<?> response = null;
         try{
@@ -56,6 +56,21 @@ public class FuncionarioController {
         try{
             Funcionario funcionario = funcionarioService.getOneFuncionario(id);
             response = new ResponseEntity<Funcionario>(funcionario, HttpStatus.OK);
+        } catch(Exception e){
+            e.printStackTrace();
+            response = new ResponseEntity<String>(
+                    "No se pudo listar el funcionario",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateFuncionario(@PathVariable Long id, @RequestBody Funcionario funcionarioNew){
+        ResponseEntity<?> response = null;
+        try{
+            funcionarioService.updateFuncionario(funcionarioNew, id);
+            response = new ResponseEntity<Funcionario>(funcionarioNew, HttpStatus.OK);
         } catch(Exception e){
             e.printStackTrace();
             response = new ResponseEntity<String>(

@@ -8,7 +8,7 @@ public interface RolService {
 
     Long saveRol(Rol rol);
 
-    void updateRol(Rol rol);
+    void updateRol(Rol rol, Long id);
 
     void deleteRol(Long id);
 

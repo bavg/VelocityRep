@@ -3,6 +3,7 @@ package com.example.projectvelocity.controller;
 
 import com.example.projectvelocity.exception.VelocityException;
 import com.example.projectvelocity.model.Usuario;
+import com.example.projectvelocity.service.CredencialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/crear")
+    @PostMapping("/")
     public ResponseEntity<String> saveUsuario(@RequestBody Usuario Usuario){
         ResponseEntity<String> response = null;
         try {
@@ -34,7 +35,7 @@ public class UsuarioController {
         return response;
     }
 
-    @GetMapping("/listar")
+    @GetMapping("/")
     public ResponseEntity<?> getAllUsuarios(){
         ResponseEntity<?> response = null;
         try{
