@@ -26,7 +26,12 @@ public class Contrato {
     private String ultimaFechaPagado;
 
     @ManyToMany
-    @JoinColumn(name = "planes")
+    @JoinTable(
+            name = "contrato_detalle",
+            joinColumns = @JoinColumn(name = "contrato_id",referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name= "planes_id",referencedColumnName="id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"contrato_id", "planes_id"})}
+    )
     private List<Plan> planes;
 
     @JsonBackReference(value = "Funcionario-Contrato")

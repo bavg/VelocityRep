@@ -35,6 +35,7 @@ public class Plan {
     private Supervisor supervisor;
 
 
+    @JsonBackReference(value = "Contrato-Plan")
     @ManyToMany(mappedBy = "planes")
     private List<Contrato> contratos;
 
