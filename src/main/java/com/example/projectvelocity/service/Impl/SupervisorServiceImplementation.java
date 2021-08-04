@@ -32,7 +32,7 @@ public class SupervisorServiceImplementation implements SupervisorService {
         old.setFechaNacimiento(supervisor.getFechaNacimiento());
         old.setRut(supervisor.getRut());
         old.setTelefono(supervisor.getTelefono());
-        old.setUsename(supervisor.getUsename());
+        old.setUsername(supervisor.getUsername());
         old.setPassword(supervisor.getPassword());
         old.setRol(supervisor.getRol());
         old.setPlanes(supervisor.getPlanes());

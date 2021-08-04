@@ -31,7 +31,7 @@ public class ClienteServiceImplementation implements ClienteService {
         old.setNombre(cliente.getNombre());
         old.setRol(cliente.getRol());
         old.setRut(cliente.getRut());
-        old.setUsename(cliente.getUsename());
+        old.setUsername(cliente.getUsername());
         old.setPassword(cliente.getPassword());
         old.setFechaNacimiento(cliente.getFechaNacimiento());
         old.setTelefono(cliente.getTelefono());

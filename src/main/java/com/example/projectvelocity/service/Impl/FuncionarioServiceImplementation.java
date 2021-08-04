@@ -32,7 +32,7 @@ public class FuncionarioServiceImplementation implements FuncionarioService {
         old.setFechaNacimiento(funcionario.getFechaNacimiento());
         old.setRut(funcionario.getRut());
         old.setTelefono(funcionario.getTelefono());
-        old.setUsename(funcionario.getUsename());
+        old.setUsername(funcionario.getUsername());
         old.setPassword(funcionario.getPassword());
         old.setRol(funcionario.getRol());
         old.setContratos(funcionario.getContratos());
