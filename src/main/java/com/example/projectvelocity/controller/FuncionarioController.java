@@ -12,6 +12,7 @@ import com.example.projectvelocity.service.FuncionarioService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Funcionario")
 public class FuncionarioController {

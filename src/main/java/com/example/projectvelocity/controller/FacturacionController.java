@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.FacturacionService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Facturacion")
 public class FacturacionController {

@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.RolService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Rol")
 public class RolController {

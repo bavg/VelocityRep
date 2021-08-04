@@ -12,6 +12,7 @@ import com.example.projectvelocity.service.UsuarioService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Usuario")
 public class UsuarioController {
