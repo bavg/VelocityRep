@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.ProductoService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Producto")
 public class ProductoController {

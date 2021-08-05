@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.ContratoService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Contrato")
 public class ContratoController {

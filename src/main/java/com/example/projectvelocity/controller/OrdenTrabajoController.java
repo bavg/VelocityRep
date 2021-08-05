@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.OrdenTrabajoService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/OrdenTrabajo")
 public class OrdenTrabajoController {

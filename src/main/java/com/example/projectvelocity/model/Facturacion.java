@@ -14,7 +14,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "facturaciones")
 public class Facturacion {
 
 
@@ -24,14 +23,5 @@ public class Facturacion {
     private int numeroFactura;
     private int monto;
     private String fecha;
-
-    @JsonBackReference(value = "Cliente-Facturacion")
-    @ManyToOne
-    @JoinColumn(name = "cliente")
-    private Cliente cliente;
-
-    @JsonManagedReference(value = "Facturacion-Contrato")
-    @OneToOne(mappedBy = "facturacion")
-    private Contrato contrato;
 
 }

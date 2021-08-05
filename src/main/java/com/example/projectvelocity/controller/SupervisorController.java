@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.SupervisorService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Supervisor")
 public class SupervisorController {

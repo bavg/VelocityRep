@@ -18,8 +18,7 @@ import java.util.Set;
 public class Cliente extends Usuario{
 
     @OneToMany(mappedBy = "cliente")
-    private List<Facturacion> facturaciones;
-
+    private List<Contrato> contratos;
     //@JsonBackReference
 
 }

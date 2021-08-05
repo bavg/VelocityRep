@@ -25,16 +25,16 @@ public class ClienteServiceImplementation implements ClienteService {
     public void updateCliente(Cliente cliente, Long id){
         Cliente old = getOneCliente(id);
         old.setApellido(cliente.getApellido());
-        old.setFacturaciones(cliente.getFacturaciones());
-        old.setContrasena(cliente.getContrasena());
         old.setCorreo(cliente.getCorreo());
         old.setDireccion(cliente.getDireccion());
         old.setNombre(cliente.getNombre());
         old.setRol(cliente.getRol());
         old.setRut(cliente.getRut());
-        old.setUsuario(cliente.getUsuario());
+        old.setUsername(cliente.getUsername());
+        old.setPassword(cliente.getPassword());
         old.setFechaNacimiento(cliente.getFechaNacimiento());
         old.setTelefono(cliente.getTelefono());
+        old.setContratos(cliente.getContratos());
         clienteRepository.save(cliente);
     }
 

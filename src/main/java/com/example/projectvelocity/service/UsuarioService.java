@@ -14,6 +14,7 @@ public interface UsuarioService {
 
     Usuario getOneUsuario(Long id);
 
+
     List<Usuario> getAllUsuario();
 
     boolean isUsuarioExist(Long id);

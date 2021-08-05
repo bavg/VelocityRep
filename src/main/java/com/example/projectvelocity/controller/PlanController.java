@@ -11,6 +11,7 @@ import com.example.projectvelocity.service.PlanService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/Plan")
 public class PlanController {

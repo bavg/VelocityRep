@@ -30,8 +30,8 @@ public class Usuario implements java.io.Serializable{
     private String fechaNacimiento;
     private String rut;
     private Long telefono;
-    private String usuario;
-    private String contrasena;
+    private String username;
+    private String password;
 
     @JsonBackReference(value = "Usuario-Rol")
     @ManyToOne
