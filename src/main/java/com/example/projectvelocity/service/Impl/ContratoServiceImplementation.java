@@ -30,7 +30,7 @@ public class ContratoServiceImplementation implements ContratoService {
         old.setUltimaFechaPagado(contrato.getUltimaFechaPagado());
         old.setPlanes(contrato.getPlanes());
         old.setFuncionario(contrato.getFuncionario());
-        old.setFacturacion(contrato.getFacturacion());
+        old.setCliente(contrato.getCliente());
         contratoRepository.save(contrato);
     }
 

@@ -28,8 +28,6 @@ public class FacturacionServiceImplementation implements FacturacionService {
         old.setNumeroFactura(facturacion.getNumeroFactura());
         old.setMonto(facturacion.getMonto());
         old.setFecha(facturacion.getFecha());
-        old.setCliente(facturacion.getCliente());
-        old.setContrato(facturacion.getContrato());
         facturacionRepository.save(facturacion);
     }
 

@@ -25,7 +25,6 @@ public class ClienteServiceImplementation implements ClienteService {
     public void updateCliente(Cliente cliente, Long id){
         Cliente old = getOneCliente(id);
         old.setApellido(cliente.getApellido());
-        old.setFacturaciones(cliente.getFacturaciones());
         old.setCorreo(cliente.getCorreo());
         old.setDireccion(cliente.getDireccion());
         old.setNombre(cliente.getNombre());
@@ -35,6 +34,7 @@ public class ClienteServiceImplementation implements ClienteService {
         old.setPassword(cliente.getPassword());
         old.setFechaNacimiento(cliente.getFechaNacimiento());
         old.setTelefono(cliente.getTelefono());
+        old.setContratos(cliente.getContratos());
         clienteRepository.save(cliente);
     }
 

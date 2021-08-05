@@ -21,6 +21,7 @@ public class Contrato {
     @GeneratedValue
     private Long id;
     private String direccion;
+    private String fecha;
     private String fechaVencimiento;
     private String estadoPago;
     private String ultimaFechaPagado;
@@ -39,8 +40,8 @@ public class Contrato {
     @JoinColumn(name = "funcionario")
     private Funcionario funcionario;
 
-    @JsonBackReference(value = "Facturacion-Contrato")
-    @OneToOne
-    @JoinColumn(name = "facturacion")
-    private Facturacion facturacion;
+    @JsonBackReference(value = "Cliente-Contrato")
+    @ManyToOne
+    @JoinColumn(name = "cliente")
+    private Cliente cliente;
 }
